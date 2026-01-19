@@ -2,7 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+
+// Registering Routes
 import templateRoutes from "./routes/templateRoutes.js";
+import emailRoutes from "./routes/emailRoutes.js";
+
 
 dotenv.config();
 
@@ -18,7 +22,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/templates", templateRoutes);
-
+app.use("/api/email", emailRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
