@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import EmailTemplate from "../models/EmailTemplate.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({ path: `${__dirname}/../../.env` });
 
 const templates = [
   {
@@ -41,7 +46,7 @@ Regards,
 
 const seedTemplates = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URL);
     await EmailTemplate.deleteMany();
     await EmailTemplate.insertMany(templates);
     console.log("Email templates seeded ✅");
