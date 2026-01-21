@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
+import startEmailScheduler from "./cron/emailScheduler.js";
+
 // Registering Routes
 import templateRoutes from "./routes/templateRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
@@ -20,6 +22,7 @@ app.get("/", (req, res) => {
   res.send("Server running with DB 🚀");
 });
 
+startEmailScheduler();
 
 app.use("/api/templates", templateRoutes);
 app.use("/api/email", emailRoutes);
