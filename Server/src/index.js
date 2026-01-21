@@ -27,7 +27,7 @@ startEmailScheduler();
 // Using Routes 
 app.use("/api/templates", templateRoutes);
 app.use("/api/email", emailRoutes);
-app.use("/api/schedule", scheduleRoutes);
+app.use("/api/", scheduleRoutes);
 
 
 const PORT = process.env.PORT || 5000;

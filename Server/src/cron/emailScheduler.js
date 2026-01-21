@@ -22,7 +22,7 @@ const startEmailScheduler = () => {
             to: email.to,
             subject: email.subject,
             body: email.body,
-            userEmail: process.env.GMAIL__USER,
+            userEmail: process.env.GMAIL_USER,
             userPass: process.env.GMAIL_PASS
           });
 
