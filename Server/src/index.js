@@ -8,7 +8,7 @@ import startEmailScheduler from "./cron/emailScheduler.js";
 // Registering Routes
 import templateRoutes from "./routes/templateRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
-
+import scheduleRoutes from "./routes/scheduleRoutes.js";
 
 dotenv.config();
 
@@ -24,8 +24,11 @@ app.get("/", (req, res) => {
 
 startEmailScheduler();
 
+// Using Routes 
 app.use("/api/templates", templateRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/schedule", scheduleRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

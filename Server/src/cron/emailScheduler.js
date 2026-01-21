@@ -1,6 +1,10 @@
 import cron from "node-cron";
 import ScheduledEmail from "../models/ScheduledEmail.js";
 import { sendEmail } from "../services/emailService.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 const startEmailScheduler = () => {
   cron.schedule("* * * * *", async () => {
@@ -18,8 +22,8 @@ const startEmailScheduler = () => {
             to: email.to,
             subject: email.subject,
             body: email.body,
-            userEmail: email.userEmail,
-            userPass: email.userPass
+            userEmail: process.env.GMAIL__USER,
+            userPass: process.env.GMAIL_PASS
           });
 
           email.status = "sent";

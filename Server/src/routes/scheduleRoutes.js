@@ -9,18 +9,14 @@ router.post("/schedule", async (req, res) => {
       to,
       subject,
       body,
-      sendAt,
-      userEmail,
-      userPass
+      sendAt
     } = req.body;
 
     const email = await ScheduledEmail.create({
       to,
       subject,
       body,
-      sendAt,
-      userEmail,
-      userPass
+      sendAt
     });
 
     res.json({ message: "Email scheduled successfully", email });
