@@ -1,21 +1,24 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import { decrypt } from "../utils/crypto";
 
 dotenv.config();
 
-export const sendEmail = async ({ to, subject, body}) => {
+export const sendEmail = async ({ to, subject, body, user }) => {
+  const decryptedPass = decrypt(user.emailPassword);
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
+      user: user.email,
+      pass: decryptedPass
     }
   });
 
   await transporter.sendMail({
-    from: process.env.GMAIL_USER,
     to,
     subject,
-    text: body
+    text: body,
+    from: user.email
   });
 };

@@ -13,6 +13,11 @@ const scheduledEmailSchema = new mongoose.Schema({
     default: "pending"
   },
 
+  retryCount: {
+  type: Number,
+  default: 0
+  },
+  
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"

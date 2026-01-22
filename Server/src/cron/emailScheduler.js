@@ -16,26 +16,29 @@ const startEmailScheduler = () => {
         status: "pending"
       });
 
-      for (const email of emails) {
-        try {
-          await sendEmail({
-            to: email.to,
-            subject: email.subject,
-            body: email.body,
-            userEmail: process.env.GMAIL_USER,
-            userPass: process.env.GMAIL_PASS
-          });
+        for (const email of emails) {
+            try {
+                await sendEmail({
+                to: email.to,
+                subject: email.subject,
+                body: email.body,
+                userId: email.userId
+                });
 
-          email.status = "sent";
-          await email.save();
+                email.status = "sent";
+                await email.save();
 
-          console.log(`Email sent to ${email.to}`);
-        } catch (err) {
-          email.status = "failed";
-          await email.save();
-          console.error("Email failed:", err.message);
+            } catch (error) {
+                email.retryCount += 1;
+
+                if (email.retryCount >= 3) {
+                email.status = "failed";
+                }
+
+                await email.save();
+            }
         }
-      }
+
     } catch (error) {
       console.error("Scheduler error:", error.message);
     }
