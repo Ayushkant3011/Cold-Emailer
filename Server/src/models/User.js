@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "gmail"
   },
+  
+  emailPassword: {
+  type: String,
+  required: true
+  },
 
   createdAt: {
     type: Date,

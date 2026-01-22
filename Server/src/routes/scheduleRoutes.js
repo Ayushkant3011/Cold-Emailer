@@ -1,9 +1,10 @@
 import express from "express";
 import ScheduledEmail from "../models/ScheduledEmail.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/schedule", async (req, res) => {
+router.post("/schedule", protect, async (req, res) => {
   try {
     const {
       to,

@@ -1,10 +1,14 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { encrypt } from "../utils/crypto.js";
+
 
 export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+
+    const encryptedPass = encrypt(req.body.emailPassword);
 
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ msg: "User already exists" });
@@ -14,7 +18,8 @@ export const register = async (req, res) => {
     const user = await User.create({
       name,
       email,
-      password: hashed
+      password: hashed,
+      emailPassword: encryptedPass
     });
 
     res.json({ message: "User registered successfully" });
