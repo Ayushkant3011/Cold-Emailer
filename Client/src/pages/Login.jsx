@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   const [form, setForm] = useState({
@@ -27,30 +28,41 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "auto", marginTop: 80 }}>
-      <h2>Login</h2>
+    <div className="login-container">
+      <div className="login-form-wrapper">
+        <div className="glass-card">
+          <h2>Welcome Back</h2>
+          <p className="login-subtitle">Sign in to your account</p>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+          <form className="login-form" onSubmit={handleLogin}>
+            <div className="form-group">
+              <input
+                type="email"
+                placeholder="Email Address"
+                required
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+            </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+            <div className="form-group">
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+              />
+            </div>
 
-        <button type="submit">Login</button>
-      </form>
+            <div className="form-group">
+              <button type="submit">Sign In</button>
+            </div>
+          </form>
 
-      <p>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
+          <p className="login-footer">
+            Don't have an account? <Link to="/register">Create one</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
