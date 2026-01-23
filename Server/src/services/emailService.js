@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import { decrypt } from "../utils/crypto";
+import { decrypt } from "../utils/crypto.js";
 
 dotenv.config();
 
