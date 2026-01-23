@@ -1,22 +1,52 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import SendEmail from "./pages/SendEmail";
+import Templates from "./pages/Templates";
 
 function App() {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    axios.get("http://localhost:5000/")
-      .then(res => console.log(res.data));
-  }, []);
-
-
   return (
-    <>
-      <h1>Cold Email Automation app</h1>
-    </>
-  )
+    <Router>
+      <Routes>
+
+        {/* Public Routes */}
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/send"
+          element={
+            <ProtectedRoute>
+              <SendEmail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/templates"
+          element={
+            <ProtectedRoute>
+              <Templates />
+            </ProtectedRoute>
+          }
+        />
+
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
