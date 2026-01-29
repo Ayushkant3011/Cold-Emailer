@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./Register.css";
 
 function Register() {
   const [form, setForm] = useState({
@@ -16,11 +17,7 @@ function Register() {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/auth/register",
-        form
-      );
-
+      await axios.post("http://localhost:5000/api/auth/register", form);
       alert("Registration successful!");
       navigate("/");
     } catch (err) {
@@ -29,45 +26,50 @@ function Register() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "auto", marginTop: 80 }}>
-      <h2>Register</h2>
+    <div className="register-container">
+      <div className="register-card">
+        <div className="brand-logo">Cold<span>Emailer</span></div>
 
-      <form onSubmit={handleRegister}>
-        <input
-          placeholder="Name"
-          required
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+        <h2>Create Account</h2>
+        <p className="subtitle">Register to start sending emails</p>
 
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+        <form className="register-form" onSubmit={handleRegister}>
+          <input
+            placeholder="Full Name"
+            required
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
 
-        <input
-          type="password"
-          placeholder="Email App Password"
-          required
-          onChange={(e) =>
-            setForm({ ...form, emailPassword: e.target.value })
-          }
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+          />
 
-        <button type="submit">Register</button>
-      </form>
+          <input
+            type="password"
+            placeholder="Email App Password"
+            required
+            onChange={(e) =>
+              setForm({ ...form, emailPassword: e.target.value })
+            }
+          />
 
-      <p>
-        Already have an account? <Link to="/">Login</Link>
-      </p>
+          <button type="submit">Register</button>
+        </form>
+
+        <p className="footer-text">
+          Already have an account? <Link to="/">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }
