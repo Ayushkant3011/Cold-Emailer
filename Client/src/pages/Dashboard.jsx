@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function Dashboard() {
   const [stats, setStats] = useState({});
@@ -19,6 +20,7 @@ function Dashboard() {
 
   return (
     <div>
+      <Navbar/>
       <h2>Dashboard</h2>
 
       {/* Cards */}

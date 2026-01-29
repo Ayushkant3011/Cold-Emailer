@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function SendEmail() {
   const [templates, setTemplates] = useState([]);
@@ -47,6 +48,7 @@ function SendEmail() {
 
   return (
     <div>
+      <Navbar/>
       <h2>Send Email</h2>
 
       <input

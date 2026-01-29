@@ -1,5 +1,7 @@
-    import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
+
 
 function Templates() {
   const [templates, setTemplates] = useState([]);
@@ -31,6 +33,7 @@ function Templates() {
 
   return (
     <div>
+      <Navbar/>
       <h2>Email Templates</h2>
 
       <input placeholder="Role"

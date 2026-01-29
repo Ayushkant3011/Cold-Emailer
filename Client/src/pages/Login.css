@@ -88,8 +88,8 @@ body {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 420px;
-  height: 100%;
+  max-width: none;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,6 +105,8 @@ body {
   padding: 40px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 420px;
 }
 
 .glass-card:hover {
