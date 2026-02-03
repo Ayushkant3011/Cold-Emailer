@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Bar } from "react-chartjs-2";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,33 +16,43 @@ ChartJS.register(
   Legend
 );
 
-function DashboardStats() {
-  const [stats, setStats] = useState({});
+function DashboardStats({ stats }) {
+  const cards = [
+    { label: "Total", value: stats.total },
+    { label: "Sent", value: stats.sent, className: "success" },
+    { label: "Pending", value: stats.pending, className: "warning" },
+    { label: "Failed", value: stats.failed, className: "danger" }
+  ];
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    axios.get("http://localhost:5000/api/dashboard/stats", {
-      headers: { Authorization: `Bearer ${token}` }
-    }).then(res => setStats(res.data));
-  }, []);
-
-  const data = {
+  const chartData = {
     labels: ["Sent", "Pending", "Failed"],
     datasets: [
       {
         label: "Emails",
         data: [stats.sent, stats.pending, stats.failed],
-        backgroundColor: ["#4CAF50", "#FFC107", "#F44336"]
+        backgroundColor: ["#22c55e", "#facc15", "#ef4444"]
       }
     ]
   };
 
   return (
-    <div style={{ width: "60%", margin: "30px auto" }}>
-      <h2>Email Stats</h2>
-      <Bar data={data} />
-    </div>
+    <>
+      {/* Cards */}
+      <div className="stats-grid">
+        {cards.map((card, i) => (
+          <div key={i} className={`stat-card ${card.className || ""}`}>
+            <p className="stat-label">{card.label}</p>
+            <h2 className="stat-value">{card.value}</h2>
+          </div>
+        ))}
+      </div>
+
+      {/* Chart */}
+      <div className="chart-wrapper">
+        <h2>Email Overview</h2>
+        <Bar data={chartData} />
+      </div>
+    </>
   );
 }
 

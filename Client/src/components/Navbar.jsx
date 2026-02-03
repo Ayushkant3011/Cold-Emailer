@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -9,27 +9,26 @@ function Navbar() {
   };
 
   return (
-    <nav style={styles.nav}>
-      <h3>ColdMailer</h3>
+    <nav className="glass-navbar">
+      <div className="nav-left">
+        <span className="logo">ColdMailer</span>
 
-      <div>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/send">Send</Link>
-        <Link to="/templates">Templates</Link>
-        <button onClick={logout}>Logout</button>
+        <NavLink to="/dashboard" className="nav-link">
+          Dashboard
+        </NavLink>
+        <NavLink to="/send" className="nav-link">
+          Send
+        </NavLink>
+        <NavLink to="/templates" className="nav-link">
+          Templates
+        </NavLink>
       </div>
+
+      <button className="logout-btn" onClick={logout}>
+        Logout
+      </button>
     </nav>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "12px 20px",
-    background: "#222",
-    color: "#fff"
-  }
-};
 
 export default Navbar;
