@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import EmailPreviewModal from "../components/EmailPreviewModal";
 import LiquidBlobs from "../components/LiquidBlobs";
+import "./sendEmail.css";
 
 function SendEmail() {
   const [templates, setTemplates] = useState([]);

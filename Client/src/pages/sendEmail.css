@@ -1,0 +1,253 @@
+/* =====================================
+   SEND EMAIL – PAGE WRAPPER
+===================================== */
+
+.send-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+}
+
+/* =====================================
+   SEND EMAIL – GLASS CARD
+===================================== */
+
+.send-card {
+  width: 100%;
+  max-width: 720px;
+  padding: 36px;
+
+  border-radius: 28px;
+
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+
+  border: 1px solid rgba(255,255,255,0.55);
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.18),
+    inset 0 1px 1px rgba(255,255,255,0.8);
+}
+
+.dark-glass .send-card {
+  background: rgba(15,23,42,0.55);
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* =====================================
+   TITLE
+===================================== */
+
+.send-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* =====================================
+   FORM GRID
+===================================== */
+
+.send-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.send-grid input[type="datetime-local"] {
+  grid-column: span 2;
+}
+
+/* =====================================
+   INPUTS & SELECT (LIGHT MODE)
+===================================== */
+
+.glass-input {
+  width: 100%;
+  height: 44px;
+  padding: 12px 14px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.6);
+
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.glass-input::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.35);
+}
+
+/* =====================================
+   SELECT ROLE – CLOSED STATE
+===================================== */
+
+select.glass-input {
+  appearance: none;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6366f1 50%),
+    linear-gradient(135deg, #6366f1 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 18px,
+    calc(100% - 12px) 18px;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* =====================================
+   DROPDOWN OPTIONS (CRITICAL FIX)
+===================================== */
+
+select option {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* =====================================
+   DARK MODE – INPUTS & SELECT
+===================================== */
+
+.dark-glass .glass-input {
+  background: rgba(255,255,255,0.15);
+  color: #f8fafc;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.dark-glass .glass-input::placeholder {
+  color: rgba(226,232,240,0.7);
+}
+
+.dark-glass select.glass-input {
+  background: rgba(255,255,255,0.18);
+  color: #f8fafc;
+}
+
+.dark-glass select option {
+  background-color: #020617;
+  color: #f8fafc;
+}
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.send-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.glass-btn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.glass-btn.primary {
+  background: rgba(99,102,241,0.9);
+  color: white;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.35);
+}
+
+.glass-btn.secondary {
+  background: rgba(255,255,255,0.45);
+  color: #0f172a;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.dark-glass .glass-btn.secondary {
+  background: rgba(255,255,255,0.18);
+  color: #e5e7eb;
+}
+
+/* =====================================
+   EMAIL PREVIEW MODAL
+===================================== */
+
+.preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+}
+
+.preview-modal {
+  max-width: 720px;
+  margin: 120px auto;
+  padding: 28px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+}
+
+.preview-modal h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.preview-modal hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 10px 0 16px;
+}
+
+.preview-modal pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* DARK MODE PREVIEW */
+.dark-glass .preview-modal {
+  background: rgba(15,23,42,0.95);
+  color: #e5e7eb;
+}
+
+.dark-glass .preview-modal hr {
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Close button */
+.preview-modal button {
+  margin-top: 16px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.preview-modal button {
+  background: rgba(99,102,241,0.9);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
