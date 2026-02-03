@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import { ThemeProvider } from "./context/ThemeContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -9,7 +9,8 @@ import Templates from "./pages/Templates";
 
 function App() {
   return (
-    <Router>
+    <ThemeProvider>
+      <Router>
       <Routes>
 
         {/* Public Routes */}
@@ -46,6 +47,7 @@ function App() {
 
       </Routes>
     </Router>
+    </ThemeProvider>
   );
 }
 

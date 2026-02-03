@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 function EmailTable({ emails }) {
   if (!emails.length) {
     return <div className="empty-state">No emails scheduled yet.</div>;
@@ -16,7 +18,11 @@ function EmailTable({ emails }) {
         </thead>
         <tbody>
           {emails.map(email => (
-            <tr key={email._id}>
+            <motion.tr
+              key={email._id}
+              whileHover={{ backgroundColor: "rgba(255,255,255,0.25)" }}
+              transition={{ duration: 0.2 }}
+            >
               <td>{email.to}</td>
               <td>
                 <span className={`status ${email.status}`}>
@@ -25,7 +31,7 @@ function EmailTable({ emails }) {
               </td>
               <td>{email.retryCount}</td>
               <td>{new Date(email.sendAt).toLocaleString()}</td>
-            </tr>
+            </motion.tr>
           ))}
         </tbody>
       </table>

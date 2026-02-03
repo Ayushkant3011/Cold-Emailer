@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import DashboardStats from "../components/DashboardStats";
 import EmailTable from "../components/EmailTable";
+import LiquidBlobs from "../components/LiquidBlobs";
 
 function Dashboard() {
   const [stats, setStats] = useState({
@@ -29,7 +30,9 @@ function Dashboard() {
 
   return (
     <>
+      <LiquidBlobs />
       <Navbar />
+
       <div className="page">
         <h1 className="page-title">Dashboard</h1>
 

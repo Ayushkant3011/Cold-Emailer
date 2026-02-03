@@ -1,7 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { dark, setDark } = useTheme();
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -24,9 +26,18 @@ function Navbar() {
         </NavLink>
       </div>
 
-      <button className="logout-btn" onClick={logout}>
-        Logout
-      </button>
+      <div style={{ display: "flex", gap: 14 }}>
+        <button
+          className="logout-btn"
+          onClick={() => setDark(!dark)}
+        >
+          {dark ? "☀️" : "🌙"}
+        </button>
+
+        <button className="logout-btn" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </nav>
   );
 }

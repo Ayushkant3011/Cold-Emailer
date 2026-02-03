@@ -1,4 +1,7 @@
 import { Bar } from "react-chartjs-2";
+import { motion } from "framer-motion";
+import useScrollParallax from "../hooks/useScrollParallax";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,6 +20,8 @@ ChartJS.register(
 );
 
 function DashboardStats({ stats }) {
+  const y = useScrollParallax(0.06);
+
   const cards = [
     { label: "Total", value: stats.total },
     { label: "Sent", value: stats.sent, className: "success" },
@@ -39,17 +44,30 @@ function DashboardStats({ stats }) {
     <>
       <div className="stats-grid">
         {cards.map((card, i) => (
-          <div key={i} className={`stat-card ${card.className || ""}`}>
+          <motion.div
+            key={i}
+            className={`stat-card ${card.className || ""}`}
+            style={{ transform: `translateY(${y}px)` }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{ scale: 1.04 }}
+          >
             <p className="stat-label">{card.label}</p>
             <h2 className="stat-value">{card.value}</h2>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      <div className="chart-wrapper">
+      <motion.div
+        className="chart-wrapper"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
         <h3>Email Overview</h3>
         <Bar data={chartData} />
-      </div>
+      </motion.div>
     </>
   );
 }
