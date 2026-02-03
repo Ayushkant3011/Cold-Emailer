@@ -4,9 +4,12 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [dark, setDark] = useState(false);
+
   return (
     <ThemeContext.Provider value={{ dark, setDark }}>
-      <div className={dark ? "dark-glass" : ""}>{children}</div>
+      <div className={`app-root ${dark ? "dark-glass" : ""}`}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 };
