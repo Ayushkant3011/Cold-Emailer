@@ -30,14 +30,13 @@ function DashboardStats({ stats }) {
       {
         label: "Emails",
         data: [stats.sent, stats.pending, stats.failed],
-        backgroundColor: ["#22c55e", "#facc15", "#ef4444"]
+        backgroundColor: ["#22c55e", "#f59e0b", "#ef4444"]
       }
     ]
   };
 
   return (
     <>
-      {/* Cards */}
       <div className="stats-grid">
         {cards.map((card, i) => (
           <div key={i} className={`stat-card ${card.className || ""}`}>
@@ -47,9 +46,8 @@ function DashboardStats({ stats }) {
         ))}
       </div>
 
-      {/* Chart */}
       <div className="chart-wrapper">
-        <h2>Email Overview</h2>
+        <h3>Email Overview</h3>
         <Bar data={chartData} />
       </div>
     </>

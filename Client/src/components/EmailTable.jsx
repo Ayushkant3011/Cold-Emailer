@@ -1,10 +1,6 @@
 function EmailTable({ emails }) {
   if (!emails.length) {
-    return (
-      <div className="empty-state">
-        No emails scheduled yet.
-      </div>
-    );
+    return <div className="empty-state">No emails scheduled yet.</div>;
   }
 
   return (
