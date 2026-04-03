@@ -20,7 +20,9 @@ function Register() {
       alert("Registration successful!");
       navigate("/");
     } catch (err) {
-      alert("Registration failed");
+      const errorMessage = err.response?.data?.message || "Registration failed";
+      alert(errorMessage);
+      console.error(err);
     }
   };
 
