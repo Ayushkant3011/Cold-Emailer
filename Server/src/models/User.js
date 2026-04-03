@@ -26,7 +26,10 @@ const userSchema = new mongoose.Schema(
     googleRefreshToken: {
       type: String,
       default: null
-    }
+    },
+
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
   },
   {
     timestamps: true // adds createdAt & updatedAt automatically
