@@ -7,8 +7,7 @@ function Register() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    password: "",
-    emailPassword: ""
+    password: ""
   });
 
   const navigate = useNavigate();
@@ -54,14 +53,7 @@ function Register() {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
 
-          <input
-            type="password"
-            placeholder="Email App Password"
-            required
-            onChange={(e) =>
-              setForm({ ...form, emailPassword: e.target.value })
-            }
-          />
+
 
           <button type="submit">Register</button>
         </form>
