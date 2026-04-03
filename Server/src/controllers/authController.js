@@ -5,10 +5,10 @@ import { encrypt } from "../utils/crypto.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, emailPassword } = req.body;
+    const { name, email, password } = req.body;
 
     // ✅ HARD GUARD (VERY IMPORTANT)
-    if (!name || !email || !password || !emailPassword) {
+    if (!name || !email || !password) {
       return res.status(400).json({
         message: "All fields are required"
       });
@@ -20,15 +20,11 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("emailPassword:", emailPassword);
-    // ✅ THIS WILL NOW WORK
-    const encryptedEmailPass = encrypt(emailPassword);
 
     const user = await User.create({
       name,
       email,
-      password: hashedPassword,
-      emailPassword: encryptedEmailPass
+      password: hashedPassword
     });
 
     res.status(201).json({
