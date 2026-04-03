@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import SendEmail from "./pages/SendEmail";
 import Templates from "./pages/Templates";
+import OAuthCallback from "./pages/OAuthCallback";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/oauth-callback" element={<OAuthCallback />} />
 
         {/* Protected Routes */}
         <Route
