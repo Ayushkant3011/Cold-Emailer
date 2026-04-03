@@ -1,6 +1,7 @@
 import cron from "node-cron";
 import ScheduledEmail from "../models/ScheduledEmail.js";
 import { sendEmail } from "../services/emailService.js";
+import User from "../models/User.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -18,11 +19,16 @@ const startEmailScheduler = () => {
 
         for (const email of emails) {
             try {
+                const user = await User.findById(email.userId);
+                if (!user) {
+                    throw new Error("User not found");
+                }
+
                 await sendEmail({
                 to: email.to,
                 subject: email.subject,
                 body: email.body,
-                userId: email.userId
+                user: user
                 });
 
                 email.status = "sent";

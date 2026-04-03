@@ -1,12 +1,19 @@
 import express from "express";
 import { sendEmail } from "../services/emailService.js";
+import protect from "../middleware/authMiddleware.js";
+import User from "../models/User.js";
 
 const router = express.Router();
 
-router.post("/send", async (req, res) => {
+router.post("/send", protect, async (req, res) => {
   try {
     const { to, subject, body } = req.body;
-    await sendEmail({ to, subject, body });
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    await sendEmail({ to, subject, body, user });
     res.json({ message: "Email sent successfully ✅" });
   } catch (error) {
     console.error("Email sending error:", error.message);
