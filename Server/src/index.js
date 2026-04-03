@@ -11,7 +11,6 @@ import emailRoutes from "./routes/emailRoutes.js";
 import scheduleRoutes from "./routes/scheduleRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import dashboradRoutes from "./routes/dashboardRoutes.js";
-import oauthRoutes from "./routes/oauthRoutes.js";
 
 dotenv.config();
 
@@ -33,7 +32,6 @@ app.use("/api/email", emailRoutes);
 app.use("/api/", scheduleRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboradRoutes);
-app.use("/api/oauth", oauthRoutes);
 
 
 const PORT = process.env.PORT || 5000;

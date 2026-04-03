@@ -23,9 +23,9 @@ const userSchema = new mongoose.Schema(
       default: "gmail"
     },
 
-    googleRefreshToken: {
+    emailPassword: {
       type: String,
-      default: null
+      required: true
     }
   },
   {
